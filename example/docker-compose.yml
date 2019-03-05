@@ -5,10 +5,10 @@ services:
     container_name: openldap
     environment:
       LDAP_LOG_LEVEL: "256"
-      LDAP_ORGANISATION: "Example Inc."
-      LDAP_DOMAIN: "example.org"
+      LDAP_ORGANISATION: "Example Inc." #组织 
+      LDAP_DOMAIN: "example.org" #根据域名解析设置的域名填写，用于phpldapadmin登录使用 
       LDAP_BASE_DN: ""
-      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_ADMIN_PASSWORD: "admin"  #管理员密码，用于phpldapadmin密码登录
       LDAP_CONFIG_PASSWORD: "config"
       LDAP_READONLY_USER: "false"
       #LDAP_READONLY_USER_USERNAME: "readonly"
@@ -40,15 +40,15 @@ services:
     ports:
       - "389:389"
       - "636:636"
-    domainname: "example.org" # important: same as hostname
-    hostname: "example.org"
+    domainname: "example.org" # important: same as hostname #根据域名解析使用的域名填写域名
+    hostname: "example.org" #主机名，与domainname一致
   phpldapadmin:
-    image: osixia/phpldapadmin:latest
+    image: osixia/phpldapadmin:latest #如若运行不了，需将latest改为0.7.2 
     container_name: phpldapadmin
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "openldap"
       PHPLDAPADMIN_HTTPS: "false"
     ports:
-      - "8080:80"
+      - "8080:80" #映射端口，防止端口被占用，根据自身服务需求设置所需的端口，用于浏览器网址登录，如：172.16.50.5:8080 
     depends_on:
       - openldap
