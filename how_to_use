@@ -1,0 +1,13 @@
+* git
+```
+git clone 至文件夹 
+cd /文件夹路径/example
+/example中存在docker-compose.yml，在里面修改管理密码，域名内容 
+```
+* 配置
+```
+docker-compose up -d 开启服务 
+docker-compose ps 查看容器运行状态 
+打开浏览器，输入服务器地址：端口访问并输入管理账号密码
+账号： cn=admin,dc=111,dc=com/根据设置域名  
+```
